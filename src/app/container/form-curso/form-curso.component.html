@@ -1,0 +1,76 @@
+<div class="card mb-3 shadow text-dark bg-light" *ngIf="curso != null">
+  <div class="card-body">
+    <form [formGroup]="form">
+      <input type="hidden" formControlName="id">
+
+      <div class="row">
+
+        <div class="col">
+          <div class="mb-3">
+            <label class="form-label">Assunto</label>
+            <input
+              type="text"
+              class="form-control"
+              [ngClass]="{'is-valid': CampoValido('assunto'),  'is-invalid': CampoInvalido('assunto')}"
+              formControlName="assunto">
+          </div>
+        </div>
+
+      </div>
+
+      <div class=" row">
+
+              <div class="col">
+                <div class="mb-3">
+                  <label class="form-label">Inicio</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [ngClass]="{'is-valid': CampoValido('inicio'),  'is-invalid': CampoInvalido('inicio')}"
+                    formControlName="inicio">
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label class="form-label">Fim</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    [ngClass]="{'is-valid': CampoValido('fim'),  'is-invalid': CampoInvalido('fim')}"
+                    formControlName="fim">
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col">
+                <div class="mb-3">
+                  <label class="form-label">Categoria</label>
+                  <select
+                    [ngClass]="{'is-valid': CampoValido('categoria'),  'is-invalid': CampoInvalido('categoria')}"
+                    formControlName="categoria"
+                    class="form-select">
+                    <option value="">Selecione uma categoria</option>
+                    <option *ngFor="let cat of categorias" [value]="cat">{{cat}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-3">
+                  <label for="" class="form-label">Quantidade de Alunos</label>
+                  <input type="number" formControlName="quantidadeAlunos" class="form-control">
+                </div>
+              </div>
+
+            </div>
+
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-outline-danger" type="button" (click)="CancelarCurso()">Cancelar</button>
+              <button class="btn btn-outline-success" type="button" (click)="SalvarCurso()">Salvar</button>
+            </div>
+    </form>
+  </div>
+</div>
