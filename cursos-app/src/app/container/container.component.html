@@ -1,0 +1,46 @@
+<div class="container mt-3">
+
+  <button type="button" class="btn btn-outline-primary m-3" (click)="CriarCurso()">Novo curso</button>
+
+  <app-form-curso *ngIf="curso" [curso]="curso" (salvarCurso)="AdicionarCurso($event)"></app-form-curso>
+
+
+  <div class="container" *ngIf="cursos != null">
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Assunto</th>
+        <th>Inicio</th>
+        <th>Fim</th>
+        <th>Vagas</th>
+        <th>Categoria</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let cr of cursos">
+          <tr class="align-middle" *ngIf="!cr.editando">
+            <td>{{cr.id}}</td>
+            <td>{{cr.assunto}}</td>
+            <td>{{cr.inicio | date }}</td>
+            <td>{{cr.fim | date }}</td>
+            <td>{{cr.quantidadeAlunos}}</td>
+            <td>{{cr.categoria}}</td>
+            <td>
+              <button class="btn" (click)="cr.editando = true">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="cr.editando">
+            <td colspan="7">
+              <app-form-curso [curso]="cr" (salvarCurso)="EditarCurso(cr, $event)"></app-form-curso>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
